@@ -2,6 +2,11 @@ runtime: go112
 service: default
 
 env_variables:
+  PROJECT_ID: <project-id>
+  DB_USER: <user_id>
+  DB_PASSWORD: <password>
+  DBNAME: <database_name>
+  PROTOCOL: unix(/cloudsql/<project-id>:asia-northeast1:<database_name>)
 
 handlers:
   - url: /static

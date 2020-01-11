@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"server/src/api/v1/hello"
+	"server/src/utilities/db"
 
 	"github.com/labstack/echo"
 )
@@ -14,6 +15,10 @@ import (
 func main() {
 	e := echo.New()
 	http.Handle("/", e)
+
+	// database
+	db := db.Init()
+	defer db.Close()
 
 	// routes
 	g := e.Group("/api/v1")
