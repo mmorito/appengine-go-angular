@@ -1,0 +1,12 @@
+runtime: go112
+service: default
+
+env_variables:
+
+handlers:
+  - url: /static
+    static_dir: static
+    secure: always
+  - url: /.*
+    script: auto
+    secure: always
