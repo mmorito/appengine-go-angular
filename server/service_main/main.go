@@ -4,8 +4,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"github.com/labstack/echo"
 	"os"
+
+	"server/src/api/v1/hello"
+
+	"github.com/labstack/echo"
 )
 
 func main() {
@@ -13,6 +16,10 @@ func main() {
 	http.Handle("/", e)
 
 	// routes
+	g := e.Group("/api/v1")
+
+	i := g.Group("/hello")
+	i.GET("", hello.Get)
 
 	port := os.Getenv("PORT")
 	if port == "" {
