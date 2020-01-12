@@ -1,8 +1,9 @@
 name: deployment
 on:
-  branches:
-    - develop
-    - feature/**
+  push:
+    branches:
+      - develop
+      - feature/**
 
 jobs:
   deploy_to_appengine:
