@@ -1,0 +1,20 @@
+name: deployment
+on:
+  branches:
+    - develop
+    - feature/**
+
+jobs:
+  deploy_to_appengine:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [13.1.0]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: "270.0.0"
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+      - run: gcloud info
