@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Starting deployment." `date '+%y/%m/%d %H:%M:%S'`
 
-TEMP_PATH="./temp"
+TEMP_PATH="$PROJECT_PATH/temp"
 TEMP_GOPATH="$TEMP_PATH/deploy"
 TARGET_PATH="$TEMP_GOPATH/src"
 PROJECT="project-id"  # デプロイ先のプロジェクトID
@@ -41,6 +41,12 @@ fi
 rm -rf $TEMP_PATH
 mkdir -p $TARGET_PATH
 
+cd front/
+npm install
+npm run build-stg
+cp -R ./dist/* $TARGET_PATH
+
+cd ../server/
 cp -R ./service_main/. $TARGET_PATH
 cp -R ./src $TARGET_PATH
 cp -R ./go.mod $TARGET_PATH
